@@ -7,3 +7,12 @@ A privacy-respecting lost and found portal with AI image matching.
 - Frontend: React + Tailwind
 - Database: MySQL
 - Auth: Google OAuth
+
+---
+title: Lost And Found Ai
+emoji: 🔍
+colorFrom: blue
+colorTo: green
+sdk: docker
+pinned: false
+---
