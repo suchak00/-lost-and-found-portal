@@ -13,8 +13,12 @@ const storage = new CloudinaryStorage({
   cloudinary,
   params: {
     folder: 'lost-and-found',
-    type: 'private',         // ← this is the key line
+    type: 'private',
     allowed_formats: ['jpg', 'jpeg', 'png', 'webp'],
+    public_id: (req, file) => {
+      const uniqueSuffix = `${Date.now()}-${Math.round(Math.random() * 1e9)}`;
+      return `report-${uniqueSuffix}`;
+    },
   },
 });
 

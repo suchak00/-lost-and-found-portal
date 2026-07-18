@@ -29,6 +29,7 @@ app.use(passport.session());
 // Routes
 app.use('/auth',        require('./routes/auth'));
 app.use('/api/reports', require('./routes/reports'));
+app.use('/api/admin',   require('./routes/admin'));
 
 // Health check
 app.get('/', (req, res) => {
