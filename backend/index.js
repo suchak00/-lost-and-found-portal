@@ -3,6 +3,7 @@ const express  = require('express');
 const cors     = require('cors');
 const session  = require('express-session');
 const passport = require('passport');
+const MySQLStore = require('express-mysql-session')(session);
 
 require('./config/passport');
 require('./config/db');
@@ -19,15 +20,17 @@ app.use(cors({
 app.use(express.json());
 
 app.use(session({
+  store: sessionStore,
   secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: false,
   cookie: {
-    secure: true,        // HTTPS only
-    sameSite: 'none',    // ← critical for cross-domain cookies
+    secure: true,
+    sameSite: 'none',
     maxAge: 24 * 60 * 60 * 1000
   }
 }));
+
 app.use(passport.initialize());
 app.use(passport.session());
 

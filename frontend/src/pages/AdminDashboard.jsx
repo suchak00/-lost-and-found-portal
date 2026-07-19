@@ -14,11 +14,15 @@ export default function AdminDashboard() {
     try {
       const endpoint = which === 'pending' ? '/matches' : '/matches/history';
       const res = await fetch(`${API_URL}${endpoint}`, { credentials: 'include' });
-      if (res.status === 403) {
-        setError('You do not have admin access.');
-        setMatches([]);
-        return;
-      }
+      if (res.status === 401) {
+  window.location.href = '/login';
+  return;
+}
+if (res.status === 403) {
+  setError('You do not have admin access.');
+  setMatches([]);
+  return;
+}
       const data = await res.json();
       setMatches(data);
       setError('');
@@ -27,6 +31,7 @@ export default function AdminDashboard() {
     } finally {
       setLoading(false);
     }
+    
   };
 
   useEffect(() => {

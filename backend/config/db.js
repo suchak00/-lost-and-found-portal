@@ -21,6 +21,7 @@ const pool = mysql.createPool({
 });
 
 const db = pool.promise();
+db.rawPool = pool;   // ← add this line, exposes the raw pool for express-mysql-session
 
 db.query('SELECT 1')
   .then(() => console.log('MySQL connected ✓'))
