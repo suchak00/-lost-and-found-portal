@@ -8,11 +8,13 @@ require('./config/passport');
 require('./config/db');
 
 const app = express();
+app.set('trust proxy', 1);   // ← tell Express to trust Render's proxy so secure cookies actually get set
 
 app.use(cors({
   origin: process.env.CLIENT_URL,
-  credentials: true,
+  credentials: true      // ← critical — allows cookies cross-origin
 }));
+
 
 app.use(express.json());
 
@@ -20,9 +22,12 @@ app.use(session({
   secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: false,
-  cookie: { secure: false },
+  cookie: {
+    secure: true,        // HTTPS only
+    sameSite: 'none',    // ← critical for cross-domain cookies
+    maxAge: 24 * 60 * 60 * 1000
+  }
 }));
-
 app.use(passport.initialize());
 app.use(passport.session());
 
