@@ -6,8 +6,7 @@ const passport = require('passport');
 const MySQLStore = require('express-mysql-session')(session);
 
 require('./config/passport');
-require('./config/db');
-
+const db = require('./config/db');
 const app = express();
 app.set('trust proxy', 1);   // ← tell Express to trust Render's proxy so secure cookies actually get set
 
