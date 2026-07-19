@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import { API_URL } from '../config';
 
 function MyReports() {
   const navigate = useNavigate()
@@ -8,7 +9,7 @@ function MyReports() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/reports/mine', { withCredentials: true })
+    axios.get(`${API_URL}/api/reports/mine`, { withCredentials: true })
       .then(res => { setReports(res.data); setLoading(false) })
       .catch(() => navigate('/login'))
   }, [])

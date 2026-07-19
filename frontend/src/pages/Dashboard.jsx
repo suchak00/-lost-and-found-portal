@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import { API_URL } from '../config';
 
 function Dashboard() {
   const [user, setUser] = useState(null)
@@ -8,13 +9,13 @@ function Dashboard() {
   const navigate = useNavigate()
 
   useEffect(() => {
-    axios.get('http://localhost:5000/auth/me', { withCredentials: true })
+    axios.get(`${API_URL}/auth/me`, { withCredentials: true })
       .then(res => { setUser(res.data); setLoading(false) })
       .catch(() => navigate('/login'))
   }, [])
 
   const handleLogout = () => {
-    window.location.href = 'http://localhost:5000/auth/logout'
+    window.location.href = `${API_URL}/auth/logout`
   }
 
   if (loading) return (

@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import { API_URL } from '../config';
 
 function ReportLost() {
   const navigate = useNavigate()
@@ -30,7 +31,7 @@ function ReportLost() {
       data.append('location', form.location)
       if (photo) data.append('photo', photo)
 
-      await axios.post('http://localhost:5000/api/reports/lost', data, {
+      await axios.post(`${API_URL}/api/reports/lost`, data, {
         withCredentials: true,
         headers: { 'Content-Type': 'multipart/form-data' },
       })

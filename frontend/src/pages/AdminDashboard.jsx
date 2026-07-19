@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 
-const API_URL = 'http://localhost:5000/api/admin';
+import { API_URL as BASE_URL } from '../config';
+const API_URL = `${BASE_URL}/api/admin`;
 
 export default function AdminDashboard() {
   const [tab, setTab] = useState('pending'); // 'pending' | 'history'
