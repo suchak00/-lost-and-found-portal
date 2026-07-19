@@ -8,13 +8,14 @@ const MySQLStore = require('express-mysql-session')(session);
 require('./config/passport');
 const db = require('./config/db');
 const app = express();
-app.set('trust proxy', 1);   // ← tell Express to trust Render's proxy so secure cookies actually get set
+app.set('trust proxy', 1);
+
+const sessionStore = new MySQLStore({}, db.rawPool);
 
 app.use(cors({
   origin: process.env.CLIENT_URL,
-  credentials: true      // ← critical — allows cookies cross-origin
+  credentials: true
 }));
-
 
 app.use(express.json());
 
