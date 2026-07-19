@@ -1,0 +1,8 @@
+cd C:\Users\USER-PC\Desktop\lost-and-found-portal
+@"
+{
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}
+"@ | Out-File -FilePath frontend\vercel.json -Encoding utf8 -NoNewline
