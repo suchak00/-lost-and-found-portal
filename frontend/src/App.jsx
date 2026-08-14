@@ -6,6 +6,9 @@ import ReportLost from './pages/ReportLost'
 import ReportFound from './pages/ReportFound'
 import MyReports from './pages/MyReports'
 import AdminDashboard from './pages/AdminDashboard'
+import SearchResults from './pages/SearchResults'
+import FAQ from './pages/FAQ'
+import ProtectedRoute from './components/ProtectedRoute'
 
 function App() {
   return (
@@ -16,8 +19,10 @@ function App() {
         <Route path="/dashboard"    element={<Dashboard />} />
         <Route path="/report-lost"  element={<ReportLost />} />
         <Route path="/report-found" element={<ReportFound />} />
-        <Route path="/my-reports"   element={<MyReports />} />
-        <Route path="/admin"        element={<AdminDashboard />} />
+        <Route path="/my-reports"   element={<ProtectedRoute><MyReports /></ProtectedRoute>} />
+        <Route path="/admin"        element={<ProtectedRoute requireAdmin={true}><AdminDashboard /></ProtectedRoute>} />
+        <Route path="/search"       element={<SearchResults />} />
+        <Route path="/faq"          element={<FAQ />} />
       </Routes>
     </BrowserRouter>
   )
