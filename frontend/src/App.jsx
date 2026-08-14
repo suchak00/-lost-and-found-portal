@@ -1,7 +1,6 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import Home from './pages/Home'
 import Login from './pages/Login'
-import Dashboard from './pages/Dashboard'
 import ReportLost from './pages/ReportLost'
 import ReportFound from './pages/ReportFound'
 import MyReports from './pages/MyReports'
@@ -16,7 +15,7 @@ function App() {
       <Routes>
         <Route path="/"             element={<Home />} />
         <Route path="/login"        element={<Login />} />
-        <Route path="/dashboard"    element={<Dashboard />} />
+        <Route path="/dashboard"    element={<Navigate to="/" replace />} />
         <Route path="/report-lost"  element={<ReportLost />} />
         <Route path="/report-found" element={<ReportFound />} />
         <Route path="/my-reports"   element={<ProtectedRoute><MyReports /></ProtectedRoute>} />
