@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import Home from './pages/Home'
 import Login from './pages/Login'
 import Dashboard from './pages/Dashboard'
 import ReportLost from './pages/ReportLost'
@@ -10,7 +11,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/"             element={<Login />} />
+        <Route path="/"             element={<Home />} />
         <Route path="/login"        element={<Login />} />
         <Route path="/dashboard"    element={<Dashboard />} />
         <Route path="/report-lost"  element={<ReportLost />} />
